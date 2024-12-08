@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebApplicationPLS.Models.Model.Hakkimizda>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<table class="table table-bordered">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="table-danger">
+        <td>
+            @Html.Raw(item.Aciklama)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HakkimizdaID })
+        </td>
+    </tr>
+}
+
+</table>
