@@ -128,6 +128,7 @@
     <Compile Include="Controllers\IletisimController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\KimlikController.cs" />
+    <Compile Include="Controllers\SliderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -139,6 +140,7 @@
     <Compile Include="Models\Model\Iletisim.cs" />
     <Compile Include="Models\Model\Kategori.cs" />
     <Compile Include="Models\Model\Kimlik.cs" />
+    <Compile Include="Models\Model\Slider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1245,11 +1247,17 @@
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Blog\Delete.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Slider\Create.cshtml" />
+    <Content Include="Views\Slider\Delete.cshtml" />
+    <Content Include="Views\Slider\Details.cshtml" />
+    <Content Include="Views\Slider\Edit.cshtml" />
+    <Content Include="Views\Slider\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Blog\" />
     <Folder Include="Uploads\Kimlik\" />
+    <Folder Include="Uploads\Slider\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

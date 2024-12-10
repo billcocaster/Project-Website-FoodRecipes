@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{
+    if (Session["adminid"] == null)
+    {
+        Response.Redirect("/Admin/Login");
+    }
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -260,7 +267,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="/Admin/Login/">
+                            <a class="dropdown-item d-flex align-items-center" href="/Admin/Logout/">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Çıkış Yap</span>
                             </a>
@@ -291,7 +298,6 @@
                     <span>Site Kimlik</span>
                 </a>
             </li><!-- End Site Kimlik Nav -->
-
             <!-- Start Hakkimizda Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/Hakkimizda/Index">
@@ -299,7 +305,6 @@
                     <span>Hakkımızda</span>
                 </a>
             </li><!-- End Hakkimizda Nav -->
-
             <!-- Start Iletisim Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/Iletisim/Index">
@@ -325,6 +330,14 @@
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
+
+            <!-- Start Slider Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/Slider/Index">
+                    <i class="bi bi-image-fill"></i>
+                    <span>Slider</span>
+                </a>
+            </li><!-- End Slider Nav -->
 
             <li class="nav-item">
                 <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
