@@ -122,8 +122,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HakkimizdaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IletisimController.cs" />
+    <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\KimlikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -991,9 +994,22 @@
     <Content Include="Views\Kimlik\Edit.cshtml" />
     <Content Include="Views\Hakkimizda\Index.cshtml" />
     <Content Include="Views\Hakkimizda\Edit.cshtml" />
+    <Content Include="Views\Iletisim\Create.cshtml" />
+    <Content Include="Views\Iletisim\Delete.cshtml" />
+    <Content Include="Views\Iletisim\Details.cshtml" />
+    <Content Include="Views\Iletisim\Edit.cshtml" />
+    <Content Include="Views\Iletisim\Index.cshtml" />
+    <Content Include="Views\Kategori\Create.cshtml" />
+    <Content Include="Views\Kategori\Delete.cshtml" />
+    <Content Include="Views\Kategori\Details.cshtml" />
+    <Content Include="Views\Kategori\Edit.cshtml" />
+    <Content Include="Views\Kategori\Index.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Blog\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Blog\" />
     <Folder Include="Uploads\Kimlik\" />
   </ItemGroup>
   <ItemGroup>

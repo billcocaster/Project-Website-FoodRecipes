@@ -9,8 +9,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/Content/imgs/logso.png" rel="icon">
+    <link href="/Content/AdminLayout/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -274,15 +274,14 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="/Admin/Index">
-                    <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
+                <a class="nav-link collapsed" href="/Admin/Index">
+                    <i class="bi bi-house-fill"></i>
+                    <span>Ana Panel</span>
                 </a>
             </li><!-- End Dashboard Nav -->
-
             <!-- Start Site Kimlik Nav -->
             <li class="nav-item">
-                <a class="nav-link " href="/Kimlik/Index">
+                <a class="nav-link collapsed" href="/Kimlik/Index">
                     <i class="bi bi-people-fill"></i>
                     <span>Site Kimlik</span>
                 </a>
@@ -290,14 +289,40 @@
 
             <!-- Start Hakkimizda Nav -->
             <li class="nav-item">
-                <a class="nav-link " href="/Hakkimizda/Index">
-                    <i class="bi bi-info-circle"></i>
-                    <span>Hakkimizda</span>
+                <a class="nav-link collapsed" href="/Hakkimizda/Index">
+                    <i class="bi bi-info-circle-fill"></i>
+                    <span>Hakkımızda</span>
                 </a>
-            </li><!-- End Site Kimlik Nav -->
+            </li><!-- End Hakkimizda Nav -->
+
+            <!-- Start Iletisim Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/Iletisim/Index">
+                    <i class="bi bi-mailbox2-flag"></i>
+                    <span>İletişim</span>
+                </a>
+            </li><!-- End Iletisim Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link collapsed" data-bs-target="#blog-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-collection-fill"></i><span>Blog Kayıtları</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="blog-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="/Kategori/Index">
+                            <i class="bi bi-circle"></i><span>Kategoriler</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Blog/Index">
+                            <i class="bi bi-circle"></i><span>Blog kayıtları</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Components Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">

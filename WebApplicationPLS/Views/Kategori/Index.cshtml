@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplicationPLS.Models.Model.Kategori>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Kategoriler</h2>
+
+<p>
+    @Html.ActionLink("Yeni oluştur", "Create")
+</p>
+<table class="table table-bordered">
+    <tr class="table table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.KategoriAd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KategoriAd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aciklama)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.KategoriID }) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.KategoriID }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.KategoriID })
+        </td>
+    </tr>
+}
+
+</table>

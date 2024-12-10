@@ -5,22 +5,22 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
+<h2>Hakkımızda</h2>
 <table class="table table-bordered">
     <tr class="table-primary">
         <th>
             @Html.DisplayNameFor(model => model.Aciklama)
         </th>
-        <th></th>
+        <th>İşlemler</th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr class="table-danger">
+    <tr class="table">
         <td>
             @Html.Raw(item.Aciklama)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.HakkimizdaID })
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.HakkimizdaID })
         </td>
     </tr>
 }

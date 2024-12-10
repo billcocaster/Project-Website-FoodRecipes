@@ -14,7 +14,7 @@ namespace WebApplicationPLS.Models.Model
         [Key]
         public int HakkimizdaID { get; set; }
         [Required]
-        [DisplayName("Hakkimizda Aciklama")]
+        [DisplayName("Hakkımızda Açıklama")]
         public string Aciklama { get; set; }
     }
 }

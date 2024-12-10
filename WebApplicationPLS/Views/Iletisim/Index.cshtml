@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebApplicationPLS.Models.Model.Iletisim>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>İletişim</h2>
+
+
+<table class="table table-bordered">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instagram)
+        </th>
+        <th>İşlemler</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Instagram)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.IletisimID }) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.IletisimID })
+        </td>
+    </tr>
+}
+
+</table>
