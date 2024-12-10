@@ -34,8 +34,9 @@
             @Html.DisplayFor(modelItem => item.Instagram)
         </td>
         <td>
-            @Html.ActionLink("Düzenle", "Edit", new { id=item.IletisimID }) |
-            @Html.ActionLink("Detaylar", "Details", new { id=item.IletisimID })
+            <a href="/Iletisim/Edit/@item.IletisimID" class="btn btn-primary">Güncelle</a>  
+            <a href="/Iletisim/Delete/@item.IletisimID" class="btn btn-danger">Sil</a>
+            <a href="/Iletisim/Details/@item.IletisimID" class="btn btn-warning">Detaylar</a>
         </td>
     </tr>
 }

@@ -47,7 +47,7 @@
             @Html.DisplayFor(modelItem => item.Unvan)
         </td>
         <td>
-            @Html.ActionLink("Düzenle", "Edit", new { id=item.KimlikID })
+            <a href="/Kimlik/Edit/@item.KimlikID" class="btn btn-primary">Güncelle</a>
         </td>
     </tr>
 }

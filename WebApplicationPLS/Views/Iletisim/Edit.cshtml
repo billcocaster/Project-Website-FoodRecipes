@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Güncelle</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Iletisim</h4>
-        <hr />
+        <h4>İletişim</h4>
+        <hr/>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IletisimID)
 
@@ -43,7 +43,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                <button class="btn btn-primary" type="submit">Güncelle</button>
+                <button class="btn" type="button"><a href="/Iletisim/Index">İptal</a></button>
             </div>
         </div>
     </div>

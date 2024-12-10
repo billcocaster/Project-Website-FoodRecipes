@@ -30,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.Aciklama)
         </td>
         <td>
-            @Html.ActionLink("Düzenle", "Edit", new { id=item.KategoriID }) |
-            @Html.ActionLink("Detaylar", "Details", new { id=item.KategoriID }) |
-            @Html.ActionLink("Sil", "Delete", new { id=item.KategoriID })
+            <a href="/Kategori/Edit/@item.KategoriID" class="btn btn-primary">Güncelle</a>
+            <a href="/Kategori/Delete/@item.KategoriID" class="btn btn-danger">Sil</a>
+            <a href="/Kategori/Details/@item.KategoriID" class="btn btn-warning">Detaylar</a>
         </td>
     </tr>
 }

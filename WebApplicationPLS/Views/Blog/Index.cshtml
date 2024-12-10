@@ -3,11 +3,27 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable(
+            {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/2.1.8/i18n/tr.json"
+                }
+            });
+    });
+</script>
 
 <h2>Blog Kayıtları</h2>
 
 
-<table class="table table-bordered">
+<table class="table table-bordered" id="myTable">
     <thead>
         <tr class="table table-primary">
             <th>#</th>
@@ -25,7 +41,7 @@
                 <td>@item.Baslik</td>
                 <td>@item.Kategori.KategoriAd</td>
                 <td><img src="@item.ResimURL" width="50" height="50" /></td>
-                <td><a href="/Blog/Edit/@item.BlogID">Güncelle</a> | <a href="/Blog/Delete/@item.BlogID">Sil</a></td>
+                <td><a href="/Blog/Edit/@item.BlogID" class="btn btn-primary">Güncelle</a>  <a href="/Blog/Delete/@item.BlogID" class="btn btn-danger">Sil</a></td>
             </tr>
         }
     </tbody>

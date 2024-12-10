@@ -20,7 +20,7 @@
             @Html.Raw(item.Aciklama)
         </td>
         <td>
-            @Html.ActionLink("Düzenle", "Edit", new { id=item.HakkimizdaID })
+            <a href="/Hakkimizda/Edit/@item.HakkimizdaID" class="btn btn-primary">Güncelle</a>
         </td>
     </tr>
 }
