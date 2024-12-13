@@ -1,33 +1,185 @@
 ﻿@{
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
     ViewBag.Title = "Home Page";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<!-- Hero Section -->
+@{ Html.RenderAction("SliderPartial", "Home");}
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+<!-- Featured Services Section -->
+<section id="featured-services" class="featured-services section">
+    <div class="container">
+        <div class="row gy-4">
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item item-cyan position-relative">
+                    <div class="icon">
+                        <i class="bi bi-fire"></i>
+                    </div>
+                    <a href="service-details.html" class="stretched-link">
+                        <h3>Top 100 Tarifler</h3>
+                    </a>
+                    <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+                </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-item item-orange position-relative">
+                    <div class="icon">
+                        <i class="bi bi-list-ul"></i>
+                    </div>
+                    <a href="service-details.html" class="stretched-link">
+                        <h3>Kategoriler</h3>
+                    </a>
+                    <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+                </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-item item-teal position-relative">
+                    <div class="icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <a href="service-details.html" class="stretched-link">
+                        <h3>Blog</h3>
+                    </a>
+                    <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+                </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-item item-red position-relative">
+                    <div class="icon">
+                        <i class="bi bi-question-circle"></i>
+                    </div>
+                    <a href="service-details.html" class="stretched-link">
+                        <h3>Soru Cevap</h3>
+                    </a>
+                    <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+                    <a href="service-details.html" class="stretched-link"></a>
+                </div>
+            </div><!-- End Service Item -->
+        </div>
+
     </div>
-</main>
+
+</section><!-- /Featured Services Section -->
+
+<!-- About Section -->
+<!--<section id="about" class="about section light-background">
+
+    <div class="container">
+
+        <div class="row gy-4">
+            <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
+                <img src="/Content/SiteLayout/assets/img/about.jpg" class="img-fluid" alt="">
+                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+            </div>
+            <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
+                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                <p class="fst-italic">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.
+                </p>
+                <ul>
+                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
+                    <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
+                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
+                </ul>
+                <p>
+                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>--><!-- /About Section -->
+
+<!-- Features Section -->
+<section id="features" class="features section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Yeni Eklenenler</h2>
+        <p>En yeni tarifler</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                <h3>Elmalı pasta</h3>
+                <a href="#about" class="btn-get-started">Detaylar</a>
+
+            </div>
+        </div><!-- Features Item -->
+
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                <h3>Kurabiye</h3>
+
+            </div>
+        </div><!-- Features Item -->
+
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                <h3>Elmalı pasta</h3>
+                <a href="#about" class="btn-get-started">Detaylar</a>
+
+            </div>
+        </div><!-- Features Item -->
+    </div>
+
+
+
+</section><!-- /Features Section -->
+
+<section id="features" class="features section light-background">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>En Çok Yapılan Tarifler</h2>
+        <p>Bugüne kadar en çok tıklanan tarifler</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                <h3>Elmalı pasta</h3>
+
+            </div>
+        </div><!-- Features Item -->
+
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                <h3>Kurabiye</h3>
+
+            </div>
+        </div><!-- Features Item -->
+
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                <h3>Kurabiye</h3>
+
+            </div>
+        </div><!-- Features Item -->
+    </div>
+
+</section>

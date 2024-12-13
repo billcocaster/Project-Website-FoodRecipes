@@ -47,7 +47,7 @@ namespace WebApplicationPLS.Controllers
         // daha fazla bilgi için bkz. https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IletisimID,Adres,Telefon,Instagram")] Iletisim iletisim)
+        public ActionResult Create([Bind(Include = "IletisimID,Adres,Telefon,Instagram,Email")] Iletisim iletisim)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace WebApplicationPLS.Controllers
         // daha fazla bilgi için bkz. https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IletisimID,Adres,Telefon,Instagram")] Iletisim iletisim)
+        public ActionResult Edit([Bind(Include = "IletisimID,Adres,Telefon,Instagram,Email")] Iletisim iletisim)
         {
             if (ModelState.IsValid)
             {

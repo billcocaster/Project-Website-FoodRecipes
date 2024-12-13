@@ -60,7 +60,7 @@ namespace WebApplicationPLS.Controllers
                     FileInfo imginfo = new FileInfo(ResimURL.FileName);
 
                     string sliderimgname = Guid.NewGuid().ToString() + imginfo.Extension;
-                    img.Resize(600, 400);
+                    img.Resize(1024, 200);
                     img.Save("~/Uploads/Slider/" + sliderimgname);
 
                     slider.ResimURL = "/Uploads/Slider/" + sliderimgname;
@@ -107,7 +107,7 @@ namespace WebApplicationPLS.Controllers
                     FileInfo imginfo = new FileInfo(ResimURL.FileName);
 
                     string sliderimgname = Guid.NewGuid().ToString() + imginfo.Extension;
-                    img.Resize(600, 400);
+                    img.Resize(250, 250);
                     img.Save("~/Uploads/Slider/" + sliderimgname);
 
                     s.ResimURL = "/Uploads/Slider/" + sliderimgname;

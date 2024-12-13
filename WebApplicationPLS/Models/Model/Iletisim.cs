@@ -16,6 +16,8 @@ namespace WebApplicationPLS.Models.Model
         public string Adres { get; set; }
         [StringLength(250,ErrorMessage ="250 karakter olmalıdır")]
         public string Telefon { get; set; }
+
+        public string Email { get; set; }
         public string Instagram { get; set; }
     }
 }

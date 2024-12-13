@@ -3,28 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplicationPLS.Models.DataContext;
 
 namespace WebApplicationPLS.Controllers
 {
     public class HomeController : Controller
     {
+        private YemekTarifleriDBContext db = new YemekTarifleriDBContext();
         public ActionResult Index()
         {
+   
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult SliderPartial()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View(db.Slider.ToList().OrderByDescending(x=>x.SliderID));
         }
-
-        public ActionResult Contact()
+        public ActionResult Hakkimizda()
         {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View(db.Hakkimizda.SingleOrDefault());
         }
+
+        public ActionResult FooterPartial()
+        {
+            ViewBag.Iletisim = db.Iletisim.SingleOrDefault();
+            return PartialView(db.Hakkimizda.SingleOrDefault());
+        }
+       
+        
+
     }
 }
