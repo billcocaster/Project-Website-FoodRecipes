@@ -1,0 +1,96 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebApplicationPLS.Models.Model.Blog>
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<!-- Page Title -->
+<div class="page-title dark-background">
+    <div class="container position-relative">
+        <h1>Blog</h1>
+        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a href="/Home/Index">Ana Sayfa</a></li>
+                <li class="current">Blog</li>
+            </ol>
+        </nav>
+    </div>
+</div><!-- End Page Title -->
+<!-- Blog Posts Section -->
+<section id="blog-posts" class="blog-posts section">
+
+
+    
+    <div class="container">
+        @{
+            Html.RenderAction("BlogKategoriPartial", "Home");
+        }
+
+        <!-- Recent Posts Widget -->
+        <div class="recent-posts-widget widget-item">
+
+            <h3 class="widget-title">En Yeni Bloglar</h3>
+
+            @{ 
+                Html.RenderAction("BlogKayitPartial","Home");
+            }
+        </div><!--/Recent Posts Widget -->
+
+        <!-- Search Widget -->
+        <div class="search-widget widget-item">
+
+            <h3 class="widget-title">Search</h3>
+            <form action="">
+                <input type="text">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+
+        </div><!--/Search Widget -->
+
+
+        <div class="row gy-4">
+
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4">
+                    <article>
+                        <div class="post-img" href="/Home/BlogDetay/@item.BlogID">
+                            <img src="@item.ResimURL" alt="@item.Baslik" class="object-fit">
+                        </div>
+
+                        <p class="post-category">@item.Kategori.KategoriAd</p>
+
+                        <h2 class="title">
+                            <a href="/Home/BlogDetay/@item.BlogID">@item.Baslik</a>
+                        </h2>
+
+                        <div class="d-flex align-items-center">
+                            <img src="/Content/SiteLayout/assets/img/blog/blog-author.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
+                            <div class="post-meta">
+                                <p class="post-author">Maria Doe</p>
+                                <p class="post-date">
+                                    <time datetime="2022-01-01">Jan 1, 2022</time>
+                                </p>
+                            </div>
+                        </div>
+
+
+                    </article>
+                </div><!-- End post list item -->
+            }
+
+
+        </div>
+    </div>
+
+
+</section><!-- /Blog Posts Section -->
+<!-- Blog Pagination Section -->
+<section id="blog-pagination" class="blog-pagination section">
+    @Html.PagedListPager(Model, Sayfa=>Url.Action("Blog",new {Sayfa }),PagedListRenderOptions.Classic)
+    
+</section><!-- /Blog Pagination Section -->

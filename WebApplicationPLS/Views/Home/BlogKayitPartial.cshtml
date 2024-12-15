@@ -1,0 +1,13 @@
+﻿@model IEnumerable<WebApplicationPLS.Models.Model.Blog>
+@foreach (var item in Model)
+{
+    <div class="post-item">
+        <img src="@item.ResimURL" alt="@item.Baslik" class="flex-shrink-0">
+        <div>
+            <h4><a href="/Home/BlogDetay/@item.BlogID">@item.Baslik</a></h4>
+            <time datetime="2020-01-01">Jan 1, 2020</time>
+        </div>
+    </div><!-- End recent post item-->
+
+}
+

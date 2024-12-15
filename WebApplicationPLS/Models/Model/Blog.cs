@@ -19,5 +19,6 @@ namespace WebApplicationPLS.Models.Model
         public string ResimURL { get; set; }
         public int? KategoriID { get; set; }
         public Kategori Kategori { get; set; }
+        public ICollection<Yorum> Yorums { get; set; }
     }
 }
