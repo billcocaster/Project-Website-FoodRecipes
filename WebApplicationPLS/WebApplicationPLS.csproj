@@ -134,11 +134,15 @@
     <Compile Include="Controllers\IletisimController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\KimlikController.cs" />
+    <Compile Include="Controllers\ListeController.cs" />
     <Compile Include="Controllers\SliderController.cs" />
+    <Compile Include="Controllers\TarifController.cs" />
+    <Compile Include="Controllers\TarifYorumController.cs" />
     <Compile Include="Controllers\YorumController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\SeoHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DataContext\YemekTarifleriDBContext.cs" />
     <Compile Include="Models\Model\Admin.cs" />
@@ -147,7 +151,10 @@
     <Compile Include="Models\Model\Iletisim.cs" />
     <Compile Include="Models\Model\Kategori.cs" />
     <Compile Include="Models\Model\Kimlik.cs" />
+    <Compile Include="Models\Model\Liste.cs" />
     <Compile Include="Models\Model\Slider.cs" />
+    <Compile Include="Models\Model\Tarif.cs" />
+    <Compile Include="Models\Model\TarifYorum.cs" />
     <Compile Include="Models\Model\Yorum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1422,7 +1429,6 @@
     <Content Include="Views\Slider\Index.cshtml" />
     <Content Include="Views\Home\SliderPartial.cshtml" />
     <Content Include="Views\Home\Hakkimizda.cshtml" />
-    <Content Include="Views\Shared\SiteFooter.cshtml" />
     <Content Include="Views\Home\FooterPartial.cshtml" />
     <Content Include="Views\Home\Iletisim.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
@@ -1435,12 +1441,35 @@
     <Content Include="Views\Yorum\Edit.cshtml" />
     <Content Include="Views\Yorum\Index.cshtml" />
     <Content Include="Views\Home\KategoriBlog.cshtml" />
+    <Content Include="Views\Tarif\Create.cshtml" />
+    <Content Include="Views\Tarif\Delete.cshtml" />
+    <Content Include="Views\Tarif\Details.cshtml" />
+    <Content Include="Views\Tarif\Edit.cshtml" />
+    <Content Include="Views\Tarif\Index.cshtml" />
+    <Content Include="Views\Liste\Create.cshtml" />
+    <Content Include="Views\Liste\Delete.cshtml" />
+    <Content Include="Views\Liste\Details.cshtml" />
+    <Content Include="Views\Liste\Edit.cshtml" />
+    <Content Include="Views\Liste\Index.cshtml" />
+    <Content Include="Views\Home\Tarif.cshtml" />
+    <Content Include="Views\Home\TarifListePartial.cshtml" />
+    <Content Include="Views\Home\TarifKayitPartial.cshtml" />
+    <Content Include="Views\Home\TarifDetay.cshtml" />
+    <Content Include="Views\Home\ListeTarif.cshtml" />
+    <Content Include="Views\Home\Liste.cshtml" />
+    <Content Include="Views\TarifYorum\Create.cshtml" />
+    <Content Include="Views\TarifYorum\Delete.cshtml" />
+    <Content Include="Views\TarifYorum\Details.cshtml" />
+    <Content Include="Views\TarifYorum\Edit.cshtml" />
+    <Content Include="Views\TarifYorum\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Blog\" />
     <Folder Include="Uploads\Kimlik\" />
+    <Folder Include="Uploads\Liste\" />
     <Folder Include="Uploads\Slider\" />
+    <Folder Include="Uploads\Tarif\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

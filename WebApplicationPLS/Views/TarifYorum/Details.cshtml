@@ -1,0 +1,67 @@
+﻿@model WebApplicationPLS.Models.Model.TarifYorum
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TarifYorum</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarif.Baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarif.Baslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Eposta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eposta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Icerik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Icerik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Onay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Onay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YorumTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YorumTarihi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TarifYorumID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

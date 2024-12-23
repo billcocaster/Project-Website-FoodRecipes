@@ -1,0 +1,43 @@
+﻿@model WebApplicationPLS.Models.Model.Liste
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Detaylar</h2>
+
+<div>
+    <h4>Liste</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ListeAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListeAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResimURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResimURL)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.ListeID }) |
+    @Html.ActionLink("Listeye dön", "/Index/")
+</p>

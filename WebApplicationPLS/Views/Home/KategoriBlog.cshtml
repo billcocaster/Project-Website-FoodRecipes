@@ -1,5 +1,6 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
+@using WebApplicationPLS.Helper;
 @model IPagedList<WebApplicationPLS.Models.Model.Blog>
 @{
     ViewBag.Title = "KategoriBlog";
@@ -14,7 +15,7 @@
         <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
         <nav class="breadcrumbs">
             <ol>
-                <li><a href="/Home/Index/">Ana Sayfa</a></li>
+                <li><a href="/Anasayfa/">Ana Sayfa</a></li>
                 <li class="current">Kategori Blog</li>
             </ol>
         </nav>
@@ -42,6 +43,7 @@
         </div><!--/Search Widget -->
 
 
+
         <div class="row gy-4">
 
 
@@ -56,7 +58,7 @@
                         <p class="post-category">@item.Kategori.KategoriAd</p>
 
                         <h2 class="title">
-                            <a href="/Home/BlogDetay/@item.BlogID">@item.Baslik</a>
+                            <a href="/Blog/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogID">@item.Baslik</a>
                         </h2>
 
                         <div class="d-flex align-items-center">

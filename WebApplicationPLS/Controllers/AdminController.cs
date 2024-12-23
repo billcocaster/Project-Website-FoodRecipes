@@ -13,16 +13,22 @@ namespace WebApplicationPLS.Controllers
     {
         YemekTarifleriDBContext db = new YemekTarifleriDBContext();
         // GET: Admin
+        [Route("yonetimpaneli")]
         public ActionResult Index()
         {
+            ViewBag.YorumBekleyen = db.Yorum.Where(x => x.Onay == false).ToList();
+            ViewBag.YorumOnay = db.Yorum.Where(x => x.Onay == false).Count();
             var sorgu = db.Kategori.ToList();
             return View(sorgu);
         }
+        [Route("yonetimpaneli/giris")]
+
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
+
         public ActionResult Login(Admin admin)
         {
             var login = db.Admin.Where(x=>x.Eposta==admin.Eposta).SingleOrDefault();
@@ -42,5 +48,6 @@ namespace WebApplicationPLS.Controllers
             Session.Abandon();
             return RedirectToAction("Login", "Admin");
         }
+       
     }
 }

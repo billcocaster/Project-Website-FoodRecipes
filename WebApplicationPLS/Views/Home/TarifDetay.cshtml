@@ -1,6 +1,6 @@
-﻿@model WebApplicationPLS.Models.Model.Blog
+﻿@model WebApplicationPLS.Models.Model.Tarif
 @{
-    ViewBag.Title = "BlogDetay";
+    ViewBag.Title = "TarifDetay";
     Layout = "~/Views/Shared/_SiteLayout.cshtml";
 }
 
@@ -10,7 +10,7 @@
         <h1>@Model.Baslik</h1>
         <nav class="breadcrumbs">
             <ol>
-                <li><a href="/Blog/">Blog</a></li>
+                <li><a href="/Tarif/">Tarif</a></li>
                 <li class="current">@Model.Baslik</li>
             </ol>
         </nav>
@@ -38,54 +38,51 @@
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="@Model.YuklenmeTarihi.ToString("yyyy-MM-dd")">@Model.YuklenmeTarihi.ToString("dd MMM, yyyy")</time></a></li>
-
-
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">@ViewBag.BlogYorumSayisi Yorum</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">@ViewBag.TarifYorumSayisi Yorum</a></li>
                             </ul>
                         </div><!-- End meta top -->
 
                         <div class="content">
-                             <p>
-                                 @Html.Raw(Model.Icerik)
-                             </p>
+                            <p>
+                                @Html.Raw(Model.Icerik)
+                            </p>
 
                         </div><!-- End post content -->
 
                         <div class="meta-bottom">
                             <i class="bi bi-folder"></i>
                             <ul class="cats">
-                                <li><a href="#">@Model.Kategori.KategoriAd</a></li>
-                            </ul>    
+                                <li><a href="#">@Model.Liste.ListeAd</a></li>
+                            </ul>
                         </div><!-- End meta bottom -->
 
                     </article>
 
                 </div>
             </section><!-- /Blog Details Section -->
-
             <!-- Blog Comments Section -->
             <section id="blog-comments" class="blog-comments section">
 
                 <div class="container">
 
                     <h4 class="comments-count">Yorumlar</h4>
-                    @foreach (var item in Model.Yorums.OrderByDescending(x => x.YorumID).Where(x=>x.Onay==true))
+                    @foreach (var item in Model.TarifYorums.OrderByDescending(x => x.TarifYorumID).Where(x => x.Onay == true))
                     {
                         <div id="comment-1" class="comment">
                             <div class="d-flex">
                                 <div class="comment-img"><img src="~/Content/imgs/logom2.png" alt=""></div>
                                 <div>
                                     <h5><a href="">@item.AdSoyad</a></h5>
-                                    <time datetime="@item.YorumTarihi.ToString("yyyy-MM-dd")">@item.YorumTarihi.ToString("dd MMM, yyyy")</time>
+                                    <time datetime="@Model.YuklenmeTarihi.ToString("yyyy-MM-dd")">@Model.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>
                                     <p>
-                                       @item.Icerik
+                                        @item.Icerik
                                     </p>
                                 </div>
                             </div>
                         </div><!-- End comment #1 -->
                     }
 
-</section><!-- /Blog Comments Section -->
+            </section><!-- /Blog Comments Section -->
             <!-- Comment Form Section -->
             <section id="comment-form" class="comment-form section">
                 <div class="container">
@@ -142,8 +139,6 @@
 
                     </div>
                 </div><!--/Blog Author Widget -->
-                
-              
                 <!-- Recent Posts Widget -->
                 <div class="recent-posts-widget widget-item">
 
@@ -185,7 +180,7 @@
                         <img src="/Content/SiteLayout/assets/img/blog/blog-recent-5.jpg" alt="" class="flex-shrink-0">
                         <div>
                             <h4><a href="blog-details.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                            <time datetime="@Model.YuklenmeTarihi.ToString("yyyy-MM-dd")">@Model.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>
+                            <time datetime="2020-01-01">Jan 1, 2020</time>
                         </div>
                     </div><!-- End recent post item-->
 
@@ -204,8 +199,8 @@
             var epostasi = $("#eposta").val();
             var yorumunuz = $("#icerik").val();
             $.ajax({
-                url: '/Home/YorumYap/',
-                data: { adsoyad: adiSoyadi, eposta: epostasi, icerik: yorumunuz, blogid: @Model.BlogID },
+                url: '/Home/TarifYorumYap/',
+                data: { adsoyad: adiSoyadi, eposta: epostasi, icerik: yorumunuz, tarifid: @Model.TarifID },
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
@@ -219,5 +214,5 @@
             });
         });
     })
-    
+
 </script>

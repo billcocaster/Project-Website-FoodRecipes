@@ -12,7 +12,7 @@
         <p>@Html.Raw(@Model.Aciklama)</p>
         <nav class="breadcrumbs">
             <ol>
-                <li><a href="/Home/Index/">Ana Sayfa</a></li>
+                <li><a href="/Anasayfa/">Ana Sayfa</a></li>
                 <li class="current">Hakkımızda</li>
             </ol>
         </nav>
@@ -58,21 +58,21 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="stats-item text-center w-100 h-100">
-                    <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="@((ViewBag.TarifSayisi != null) ? ViewBag.TarifSayisi : 0)" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Tarif</p>
                 </div>
             </div><!-- End Stats Item -->
 
             <div class="col-lg-3 col-md-6">
                 <div class="stats-item text-center w-100 h-100">
-                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                    <p>Kategori</p>
+                    <span data-purecounter-start="0" data-purecounter-end="@((ViewBag.ListeSayisi != null) ? ViewBag.ListeSayisi : 0)" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Liste</p>
                 </div>
             </div><!-- End Stats Item -->
 
             <div class="col-lg-3 col-md-6">
                 <div class="stats-item text-center w-100 h-100">
-                    <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="@((ViewBag.BlogSayisi != null) ? ViewBag.BlogSayisi : 0)" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Blog</p>
                 </div>
             </div><!-- End Stats Item -->

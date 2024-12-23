@@ -21,6 +21,11 @@ namespace WebApplicationPLS.Models.DataContext
         public DbSet<Kimlik> Kimlik { get; set; }
         public DbSet<Slider> Slider { get; set; }
         public DbSet<Yorum> Yorum { get; set; }
+        public DbSet<Liste> Liste { get; set; }
+        public DbSet<Tarif> Tarif { get; set; }
+        public DbSet<TarifYorum> TarifYorum { get; set; }
+
+
 
 
 

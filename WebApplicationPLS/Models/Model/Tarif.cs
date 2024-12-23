@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
 namespace WebApplicationPLS.Models.Model
 {
-    [Table("Blog")]
-    public class Blog
+    [Table("Tarif")]
+    public class Tarif
     {
-        public int BlogID { get; set; }
-        [DisplayName("Blog Başlığı")]
+        public int TarifID { get; set; }
+        [DisplayName("Tarif Başlığı")]
         public string Baslik { get; set; }
-        [DisplayName("Blog İçeriği")]
+        [DisplayName("Tarif İçeriği")]
         public string Icerik { get; set; }
-        [DisplayName("Blog görseli")]
+        [DisplayName("Tarif görseli")]
         public string ResimURL { get; set; }
-        public int? KategoriID { get; set; }
-        public Kategori Kategori { get; set; }
-        public ICollection<Yorum> Yorums { get; set; }
+        public int? ListeID { get; set; }
         [DisplayName("Yüklenme Tarihi")]
         public DateTime YuklenmeTarihi { get; set; } = DateTime.Now;
+        public Liste Liste { get; set; }
+        public ICollection<TarifYorum> TarifYorums { get; set; }
     }
 }

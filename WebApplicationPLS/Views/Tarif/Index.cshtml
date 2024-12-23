@@ -1,5 +1,5 @@
 ﻿@using WebApplicationPLS.Helper;
-@model IEnumerable<WebApplicationPLS.Models.Model.Blog>
+@model IEnumerable<WebApplicationPLS.Models.Model.Tarif>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -21,7 +21,7 @@
     });
 </script>
 
-<h2>Blog Kayıtları</h2>
+<h2>Tarif Kayıtları</h2>
 
 
 <table class="table table-bordered" id="myTable">
@@ -29,7 +29,7 @@
         <tr class="table table-primary">
             <th>#</th>
             <th>Başlık</th>
-            <th>Kategori</th>
+            <th>Liste</th>
             <th>ResimURL</th>
             <th>İşlemler</th>
         </tr>
@@ -38,16 +38,16 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.BlogID</td>
+                <td>@item.TarifID</td>
                 <td>@item.Baslik</td>
-                <td>@item.Kategori.KategoriAd</td>
+                <td>@item.Liste.ListeAd</td>
                 <td><img src="@item.ResimURL" width="50" height="50" /></td>
-                <td><a href="/yonetimpaneli/blog/duzenle/@item.BlogID" class="btn btn-primary">Güncelle</a>  <a href="/yonetimpaneli/blog/sil/@item.BlogID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/yonetimpaneli/tarif/duzenle/@item.TarifID" class="btn btn-primary">Güncelle</a>  <a href="/yonetimpaneli/tarif/sil/@item.TarifID" class="btn btn-danger">Sil</a></td>
             </tr>
         }
     </tbody>
 </table>
 
-<a class="btn btn-primary" href="/Blog/Create/">Yeni Blog Ekle</a>
+<a class="btn btn-primary" href="/Tarif/Create/">Yeni Tarif Ekle</a>
 
 

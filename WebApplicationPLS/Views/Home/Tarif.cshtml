@@ -1,21 +1,21 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
 @using WebApplicationPLS.Helper;
-@model IPagedList<WebApplicationPLS.Models.Model.Blog>
+@model IPagedList<WebApplicationPLS.Models.Model.Tarif>
 @{
-    ViewBag.Title = "Liste";
+    ViewBag.Title = "Tarif";
     Layout = "~/Views/Shared/_SiteLayout.cshtml";
 }
 
 <!-- Page Title -->
 <div class="page-title dark-background">
     <div class="container position-relative">
-        <h1>Blog</h1>
+        <h1>Tarif</h1>
         <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
         <nav class="breadcrumbs">
             <ol>
                 <li><a href="/Anasayfa/">Ana Sayfa</a></li>
-                <li class="current">Blog</li>
+                <li class="current">Tarif</li>
             </ol>
         </nav>
     </div>
@@ -27,16 +27,16 @@
 
     <div class="container">
         @{
-            Html.RenderAction("BlogKategoriPartial", "Home");
+            Html.RenderAction("TarifListePartial", "Home");
         }
 
         <!-- Recent Posts Widget -->
         <div class="recent-posts-widget widget-item">
 
-            <h3 class="widget-title">En Yeni Bloglar</h3>
+            <h3 class="widget-title">En Yeni Tarifler</h3>
 
             @{
-                Html.RenderAction("BlogKayitPartial", "Home");
+                Html.RenderAction("TarifKayitPartial", "Home");
             }
         </div><!--/Recent Posts Widget -->
         <!-- Search Widget -->
@@ -59,13 +59,13 @@
                 <div class="col-lg-4">
                     <article>
                         <div class="post-img">
-                            <img src="@item.ResimURL" alt="@item.Baslik" class="object-fit" href="/BlogPost/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogID">
+                            <img src="@item.ResimURL" alt="@item.Baslik" class="object-fit" href="/TarifPost/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.TarifID">
                         </div>
 
-                        <p class="post-category">@item.Kategori.KategoriAd</p>
+                        <p class="post-category">@item.Liste.ListeAd</p>
 
                         <h2 class="title">
-                            <a href="/Blog/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogID">@item.Baslik</a>
+                            <a href="/Tarif/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.TarifID">@item.Baslik</a>
                         </h2>
 
                         <div class="d-flex align-items-center">
@@ -91,6 +91,6 @@
 </section><!-- /Blog Posts Section -->
 <!-- Blog Pagination Section -->
 <section id="blog-pagination" class="blog-pagination section">
-    @Html.PagedListPager(Model, Sayfa => Url.Action("Blog", new { Sayfa }), PagedListRenderOptions.Classic)
+    @Html.PagedListPager(Model, Sayfa => Url.Action("Tarif", new { Sayfa }), PagedListRenderOptions.Classic)
 
 </section><!-- /Blog Pagination Section -->

@@ -11,70 +11,70 @@ using WebApplicationPLS.Models.Model;
 
 namespace WebApplicationPLS.Controllers
 {
-    public class BlogController : Controller
+    public class TarifController : Controller
     {
         private YemekTarifleriDBContext db = new YemekTarifleriDBContext();
-        // GET: Blog
+        // GET: Tarif
         public ActionResult Index()
         {
             db.Configuration.LazyLoadingEnabled = false;
-            return View(db.Blog.Include("Kategori").ToList().OrderByDescending(x => x.BlogID));
+            return View(db.Tarif.Include("Liste").ToList().OrderByDescending(x => x.TarifID));
 
         }
 
         public ActionResult Create()
         {
-            ViewBag.KategoriID = new SelectList(db.Kategori, "KategoriID", "KategoriAd");
+            ViewBag.ListeID = new SelectList(db.Liste, "ListeID", "ListeAd");
             return View();
         }
 
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Blog blog, HttpPostedFileBase ResimURL)
+        public ActionResult Create(Tarif tarif, HttpPostedFileBase ResimURL)
         {
             if (ResimURL != null)
             {
-                
+
                 WebImage img = new WebImage(ResimURL.InputStream);
                 FileInfo imginfo = new FileInfo(ResimURL.FileName);
 
-                string blogimgname = Guid.NewGuid().ToString() + imginfo.Extension;
-                img.Resize(600, 400);
-                img.Save("~/Uploads/Blog/" + blogimgname);
+                string tarifimgname = Guid.NewGuid().ToString() + imginfo.Extension;
+                img.Resize(1024, 768);
+                img.Save("~/Uploads/Tarif/" + tarifimgname);
 
-                blog.ResimURL = "/Uploads/Blog/" + blogimgname;
+                tarif.ResimURL = "/Uploads/Tarif/" + tarifimgname;
             }
-            db.Blog.Add(blog);
+            db.Tarif.Add(tarif);
             db.SaveChanges();
-            return Redirect("/Blog/Index/");
+            return Redirect("/Tarif/Index/");
         }
-        [Route("yonetimpaneli/blog/duzenle/{id:int}")]
+        [Route("yonetimpaneli/tarif/duzenle/{id:int}")]
         public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return HttpNotFound();
             }
-            var b = db.Blog.Where(x => x.BlogID == id).SingleOrDefault();
-            if (b==null)
+            var b = db.Tarif.Where(x => x.TarifID == id).SingleOrDefault();
+            if (b == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.KategoriID = new SelectList(db.Kategori, "KategoriID", "KategoriAd", b.KategoriID);
+            ViewBag.ListeID = new SelectList(db.Liste, "ListeID", "ListeAd", b.ListeID);
             return View(b);
 
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        [Route("yonetimpaneli/blog/duzenle/{id:int}")]
+        [Route("yonetimpaneli/tarif/duzenle/{id:int}")]
 
-        public ActionResult Edit(int id, Blog blog, HttpPostedFileBase ResimURL)
+        public ActionResult Edit(int id, Tarif tarif, HttpPostedFileBase ResimURL)
         {
             if (ModelState.IsValid)
             {
-                var b = db.Blog.Where(x => x.BlogID==id).SingleOrDefault();
+                var b = db.Tarif.Where(x => x.TarifID == id).SingleOrDefault();
                 if (ResimURL != null)
                 {
                     if (System.IO.File.Exists(Server.MapPath(b.ResimURL)))
@@ -84,41 +84,41 @@ namespace WebApplicationPLS.Controllers
                     WebImage img = new WebImage(ResimURL.InputStream);
                     FileInfo imginfo = new FileInfo(ResimURL.FileName);
 
-                    string blogimgname = Guid.NewGuid().ToString() + imginfo.Extension;
-                    img.Resize(600, 400);
-                    img.Save("~/Uploads/Blog/" + blogimgname);
+                    string tarifimgname = Guid.NewGuid().ToString() + imginfo.Extension;
+                    img.Resize(1024, 768);
+                    img.Save("~/Uploads/Tarif/" + tarifimgname);
 
-                    b.ResimURL = "/Uploads/Blog/" + blogimgname;
+                    b.ResimURL = "/Uploads/Tarif/" + tarifimgname;
                 }
-                b.Baslik = blog.Baslik;
-                b.Icerik = blog.Icerik;
-                b.KategoriID = blog.KategoriID;
+                b.Baslik = tarif.Baslik;
+                b.Icerik = tarif.Icerik;
+                b.ListeID = tarif.ListeID;
                 db.SaveChanges();
-                return Redirect("/Blog/Index/");
+                return Redirect("/Tarif/Index/");
             }
-            return View(blog);
+            return View(tarif);
         }
-        [Route("yonetimpaneli/blog/sil/{id:int}")]
+        [Route("yonetimpaneli/tarif/sil/{id:int}")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Blog blog = db.Blog.Find(id);
-            if (blog == null)
+            Tarif tarif = db.Tarif.Find(id);
+            if (tarif == null)
             {
                 return HttpNotFound();
             }
-            return View(blog);
+            return View(tarif);
         }
         [HttpPost]
-        [Route("yonetimpaneli/blog/sil/{id:int}")]
+        [Route("yonetimpaneli/tarif/sil/{id:int}")]
 
         public ActionResult Delete(int id)
         {
-            var b = db.Blog.Find(id);
-            if(b == null)
+            var b = db.Tarif.Find(id);
+            if (b == null)
             {
                 return HttpNotFound();
             }
@@ -126,10 +126,10 @@ namespace WebApplicationPLS.Controllers
             {
                 System.IO.File.Delete(Server.MapPath(b.ResimURL));
             }
-            db.Blog.Remove(b);
+            db.Tarif.Remove(b);
             db.SaveChanges();
 
-            return Redirect("/Blog/Index/");
+            return Redirect("/Tarif/Index/");
         }
     }
 }

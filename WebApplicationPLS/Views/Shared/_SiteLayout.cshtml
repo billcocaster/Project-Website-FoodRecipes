@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YemekTarifleri</title>
-    <meta name="description" content="ac" />
-    <meta name="keywords" content="ky" />
+    <title>@ViewBag.Title - @ViewBag.Kimlik.Title</title>
+    <meta name="description" content="@Html.Raw(ViewBag.Kimlik.Description)" />
+    <meta name="keywords" content="@ViewBag.Kimlik.Keywords" />
 
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -13,7 +13,7 @@
 
 
     <!-- Favicons -->
-    <link href="~/Content/imgs/logso.png" rel="icon">
+    <link href="@ViewBag.Kimlik.LogoURL" rel="icon">
     <link href="/Content/SiteLayout/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Fonts -->
@@ -43,37 +43,20 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-            <a href="/Home/Index/" class="logo d-flex align-items-center">
+            <a href="/Anasayfa/" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <img src="~/Content/imgs/logso.png" alt="YemekTarifleri Logo">
-                <h1 class="sitename">YemekTarifleri</h1>
+                <img src="@ViewBag.Kimlik.LogoURL" alt="YemekTarifleri Logo">
+                <h1 class="sitename">@ViewBag.Kimlik.Title</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="/Home/Index/" class="btn"><i class="bi bi-house-door-fill"></i>Ana Sayfa</a></li>
-                    <li><a href="/Home/Hakkimizda/">Hakkımızda</a></li>
-                    <li><a href="/Home/Blog/">Blog</a></li>
-                    @*<li class="dropdown">
-                            <a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul>
-                                <li><a href="#">Dropdown 1</a></li>
-                                <li class="dropdown">
-                                    <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Deep Dropdown 1</a></li>
-                                        <li><a href="#">Deep Dropdown 2</a></li>
-                                        <li><a href="#">Deep Dropdown 3</a></li>
-                                        <li><a href="#">Deep Dropdown 4</a></li>
-                                        <li><a href="#">Deep Dropdown 5</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Dropdown 2</a></li>
-                                <li><a href="#">Dropdown 3</a></li>
-                                <li><a href="#">Dropdown 4</a></li>
-                            </ul>
-                        </li>*@
-                    <li><a href="/Home/Iletisim/">İletişim</a></li>
+                    <li><a href="/Anasayfa/" class="btn"><i class="bi bi-house-door-fill"></i>Ana Sayfa</a></li>
+                    <li><a href="/Tarif/" class="btn">Tarif</a></li>
+                    <li><a href="/Liste/" class="btn">Listeler</a></li>
+                    <li><a href="/Blog/">Blog</a></li>
+                    <li><a href="/Hakkimizda/">Hakkımızda</a></li>
+                    <li><a href="/Iletisim/">İletişim</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
