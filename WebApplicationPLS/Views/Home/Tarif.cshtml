@@ -11,7 +11,6 @@
 <div class="page-title dark-background">
     <div class="container position-relative">
         <h1>Tarif</h1>
-        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
         <nav class="breadcrumbs">
             <ol>
                 <li><a href="/Anasayfa/">Ana Sayfa</a></li>
@@ -59,7 +58,7 @@
                 <div class="col-lg-4">
                     <article>
                         <div class="post-img">
-                            <img src="@item.ResimURL" alt="@item.Baslik" class="object-fit" href="/TarifPost/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.TarifID">
+                            <a href="/Tarif/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.TarifID"><img src="@item.ResimURL" alt="@item.Baslik" class="img-fluid"></a>
                         </div>
 
                         <p class="post-category">@item.Liste.ListeAd</p>
@@ -69,11 +68,12 @@
                         </h2>
 
                         <div class="d-flex align-items-center">
-                            <img src="/Content/SiteLayout/assets/img/blog/blog-author.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
+                            <img src="~/Content/imgs/logso.png" alt="" class="img-fluid post-author-img flex-shrink-0">
                             <div class="post-meta">
-                                <p class="post-author">Maria Doe</p>
+                                <p class="post-author">YemekTarifleri</p>
                                 <p class="post-date">
                                     <time datetime="@item.YuklenmeTarihi.ToString("yyyy-MM-dd")">@item.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>
+                                    <i class="bi bi-eye-fill">@item.TiklanmaSayisi</i>
                                 </p>
                             </div>
                         </div>

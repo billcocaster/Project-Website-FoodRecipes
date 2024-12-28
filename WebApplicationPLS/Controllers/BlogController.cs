@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -35,13 +36,13 @@ namespace WebApplicationPLS.Controllers
         {
             if (ResimURL != null)
             {
-                
-                WebImage img = new WebImage(ResimURL.InputStream);
-                FileInfo imginfo = new FileInfo(ResimURL.FileName);
+                var img = System.Drawing.Image.FromStream(ResimURL.InputStream);
+                var resizedImg = new Bitmap(img, new Size(1024, 768));
 
-                string blogimgname = Guid.NewGuid().ToString() + imginfo.Extension;
-                img.Resize(600, 400);
-                img.Save("~/Uploads/Blog/" + blogimgname);
+                string blogimgname = Guid.NewGuid().ToString() + Path.GetExtension(ResimURL.FileName);
+                string path = Server.MapPath("~/Uploads/Blog/" + blogimgname);
+
+                resizedImg.Save(path, img.RawFormat);
 
                 blog.ResimURL = "/Uploads/Blog/" + blogimgname;
             }
@@ -74,30 +75,44 @@ namespace WebApplicationPLS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var b = db.Blog.Where(x => x.BlogID==id).SingleOrDefault();
+                var b = db.Blog.Where(x => x.BlogID == id).SingleOrDefault();
                 if (ResimURL != null)
                 {
-                    if (System.IO.File.Exists(Server.MapPath(b.ResimURL)))
+                    // Mevcut resmi sil
+                    if (!string.IsNullOrEmpty(b.ResimURL) && System.IO.File.Exists(Server.MapPath(b.ResimURL)))
                     {
                         System.IO.File.Delete(Server.MapPath(b.ResimURL));
                     }
-                    WebImage img = new WebImage(ResimURL.InputStream);
-                    FileInfo imginfo = new FileInfo(ResimURL.FileName);
 
-                    string blogimgname = Guid.NewGuid().ToString() + imginfo.Extension;
-                    img.Resize(600, 400);
-                    img.Save("~/Uploads/Blog/" + blogimgname);
+                    // Yeni resmi işle ve kaydet
+                    using (var img = System.Drawing.Image.FromStream(ResimURL.InputStream))
+                    {
+                        // Resmi yeniden boyutlandır
+                        var resizedImg = new System.Drawing.Bitmap(img, new System.Drawing.Size(1024, 768));
 
-                    b.ResimURL = "/Uploads/Blog/" + blogimgname;
+                        // Resim dosya adını oluştur
+                        string blogimgname = Guid.NewGuid().ToString() + Path.GetExtension(ResimURL.FileName);
+                        string path = Server.MapPath("~/Uploads/Blog/" + blogimgname);
+
+                        // Resmi kaydet
+                        resizedImg.Save(path, img.RawFormat);
+
+                        // Resim URL'sini ayarla
+                        b.ResimURL = "/Uploads/Blog/" + blogimgname;
+                    }
                 }
+
+                // Diğer alanları güncelle
                 b.Baslik = blog.Baslik;
                 b.Icerik = blog.Icerik;
                 b.KategoriID = blog.KategoriID;
                 db.SaveChanges();
                 return Redirect("/Blog/Index/");
+
             }
             return View(blog);
         }
+       
         [Route("yonetimpaneli/blog/sil/{id:int}")]
         public ActionResult Delete(int? id)
         {

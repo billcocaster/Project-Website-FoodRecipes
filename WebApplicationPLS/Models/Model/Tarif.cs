@@ -21,6 +21,7 @@ namespace WebApplicationPLS.Models.Model
         [DisplayName("Yüklenme Tarihi")]
         public DateTime YuklenmeTarihi { get; set; } = DateTime.Now;
         public Liste Liste { get; set; }
+        public int TiklanmaSayisi { get; set; }
         public ICollection<TarifYorum> TarifYorums { get; set; }
     }
 }

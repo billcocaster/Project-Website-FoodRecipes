@@ -1,4 +1,5 @@
-﻿@{
+﻿@using WebApplicationPLS.Helper;
+@{
     Layout = "~/Views/Shared/_SiteLayout.cshtml";
     ViewBag.Title = "Anasayfa";
 }
@@ -9,7 +10,7 @@
 <!-- Featured Services Section -->
 <section id="featured-services" class="featured-services section">
     <div class="container">
-        <div class="row gy-4">
+        <div class="row gy-4 justify-content-center">
 
             <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                 <div class="service-item item-cyan position-relative">
@@ -19,7 +20,7 @@
                     <a href="/Tarif/" class="stretched-link">
                         <h3>Top 100 Tarifler</h3>
                     </a>
-                    <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+                    <p>En çok tıklanan 100 tarife gözatın</p>
                 </div>
             </div><!-- End Service Item -->
 
@@ -31,7 +32,7 @@
                     <a href="/Liste/" class="stretched-link">
                         <h3>Listeler</h3>
                     </a>
-                    <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+                    <p>Çeşitli listeler arasından tarifleri görüntüleyin</p>
                 </div>
             </div><!-- End Service Item -->
 
@@ -43,20 +44,7 @@
                     <a href="/Blog/" class="stretched-link">
                         <h3>Blog</h3>
                     </a>
-                    <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-                </div>
-            </div><!-- End Service Item -->
-
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                <div class="service-item item-red position-relative">
-                    <div class="icon">
-                        <i class="bi bi-question-circle"></i>
-                    </div>
-                    <a href="service-details.html" class="stretched-link">
-                        <h3>Soru Cevap</h3>
-                    </a>
-                    <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-                    <a href="service-details.html" class="stretched-link"></a>
+                    <p>Bilgilendirici blog yazılarımızdan faydalanın</p>
                 </div>
             </div><!-- End Service Item -->
         </div>
@@ -64,7 +52,6 @@
     </div>
 
 </section><!-- /Featured Services Section -->
-
 <!-- About Section -->
 <!--<section id="about" class="about section light-background">
 
@@ -95,49 +82,31 @@
 
     </div>
 
-</section>--><!-- /About Section -->
-
+</section>-->
+<!-- /About Section -->
 <!-- Features Section -->
 <section id="features" class="features section">
 
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
-        <h2>Yeni Eklenenler</h2>
-        <p>En yeni tarifler</p>
+        <h2>En Yeni Tarifler</h2>
+        <p>En son eklenen nefis tarifler</p>
     </div><!-- End Section Title -->
 
     <div class="container">
-        <div class="row gy-4 align-items-center features-item">
-            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
-            </div>
-            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-                <h3>Elmalı pasta</h3>
-                <a href="#about" class="btn-get-started">Detaylar</a>
-
-            </div>
-        </div><!-- Features Item -->
-
-        <div class="row gy-4 align-items-center features-item">
-            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
-            </div>
-            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-                <h3>Kurabiye</h3>
-
-            </div>
-        </div><!-- Features Item -->
-
-        <div class="row gy-4 align-items-center features-item">
-            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
-            </div>
-            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-                <h3>Elmalı pasta</h3>
-                <a href="#about" class="btn-get-started">Detaylar</a>
-
-            </div>
-        </div><!-- Features Item -->
+        @foreach (var tarif in ViewBag.EnYeniTarifler)
+        {
+            <div class="row gy-4 align-items-center features-item">
+                <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                    <a href="/Tarif/@SeoHelper.ToSeoUrl(tarif.Baslik).ToLower()-@tarif.TarifID"><img src="@tarif.ResimURL" class="img-fluid" alt="@tarif.Baslik"></a>
+                </div>
+                <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                    <h3>@tarif.Baslik</h3>
+                    <h6><time datetime="@tarif.YuklenmeTarihi.ToString("yyyy-MM-dd")">@tarif.YuklenmeTarihi.ToString("dd MMM, yyyy")</time></h6>
+                    <a href="/Tarif/@SeoHelper.ToSeoUrl(tarif.Baslik).ToLower()-@tarif.TarifID" class="btn-get-started">Detaylar</a>
+                </div>
+            </div><!-- Features Item -->
+        }
     </div>
 
 
@@ -146,40 +115,24 @@
 
 <section id="features" class="features section light-background">
     <div class="container section-title" data-aos="fade-up">
-        <h2>En Çok Yapılan Tarifler</h2>
-        <p>Bugüne kadar en çok tıklanan tarifler</p>
+        <h2>En Yeni Bloglar</h2>
+        <p>En son eklenen blog yazıları</p>
     </div><!-- End Section Title -->
 
     <div class="container">
-        <div class="row gy-4 align-items-center features-item">
-            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
-            </div>
-            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-                <h3>Elmalı pasta</h3>
-
-            </div>
-        </div><!-- Features Item -->
-
-        <div class="row gy-4 align-items-center features-item">
-            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
-            </div>
-            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-                <h3>Kurabiye</h3>
-
-            </div>
-        </div><!-- Features Item -->
-
-        <div class="row gy-4 align-items-center features-item">
-            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                <img src="/Content/SiteLayout/assets/img/features-1.svg" class="img-fluid" alt="">
-            </div>
-            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-                <h3>Kurabiye</h3>
-
-            </div>
-        </div><!-- Features Item -->
+        @foreach (var blog in ViewBag.EnYeniBloglar)
+        {
+            <div class="row gy-4 align-items-center features-item">
+                <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                    <a href="/Blog/@SeoHelper.ToSeoUrl(blog.Baslik).ToLower()-@blog.BlogID"><img src="@blog.ResimURL" class="img-fluid" alt="@blog.Baslik"></a>
+                </div>
+                <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                    <h3>@blog.Baslik</h3>
+                    <h6><time datetime="@blog.YuklenmeTarihi.ToString("yyyy-MM-dd")">@blog.YuklenmeTarihi.ToString("dd MMM, yyyy")</time></h6>
+                    <a href="/Blog/@SeoHelper.ToSeoUrl(blog.Baslik).ToLower()-@blog.BlogID" class="btn-get-started">Detaylar</a>
+                </div>
+            </div><!-- Features Item -->
+        }
     </div>
 
 </section>

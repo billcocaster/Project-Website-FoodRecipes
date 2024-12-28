@@ -24,11 +24,14 @@ namespace WebApplicationPLS.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.EnYeniBloglar = db.Blog.OrderByDescending(t => t.BlogID).Take(3);
+            ViewBag.EnYeniTarifler = db.Tarif.OrderByDescending(t => t.TarifID).Take(3);
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
             return View();
         }
         public ActionResult SliderPartial()
         {
+            ViewBag.EnCokTiklananTarifler = db.Tarif.OrderByDescending(t => t.TiklanmaSayisi).Take(3);
             return View(db.Slider.ToList().OrderByDescending(x=>x.SliderID));
         }
         [Route("Hakkimizda")]
@@ -39,6 +42,9 @@ namespace WebApplicationPLS.Controllers
             ViewBag.BlogSayisi = db.Blog.Where(x => x.Icerik != null).Count();
             ViewBag.TarifSayisi = db.Tarif.Where(Tarif => Tarif.Icerik != null).Count();
             ViewBag.ListeSayisi = db.Liste.Count();
+            ViewBag.BlogYorumSayisi = db.Blog.Sum(b => b.Yorums.Count);
+            ViewBag.TarifYorumSayisi = db.Tarif.Sum(b => b.TarifYorums.Count);
+
 
 
 
@@ -57,8 +63,9 @@ namespace WebApplicationPLS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Iletisim(string adSoyad=null, string email = null, string konu = null, string mesaj = null)
         {
-            try
-            {
+            ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
+            if (adSoyad != null && email != null)
+            { 
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("yemektarifleriprj@gmail.com");
                 mail.To.Add("yemektarifleriprj@gmail.com");
@@ -73,9 +80,9 @@ namespace WebApplicationPLS.Controllers
                 smtp.Send(mail);
                 ViewBag.Uyari = "Mesaj başarıyla gönderildi.";
             }
-            catch (Exception ex)
+            else
             {
-                ViewBag.Uyari = "Hata: " + ex.Message;
+                ViewBag.Uyari = "Hata Oluştu. Tekrar deneyiniz.";
             }
 
             return View();
@@ -93,6 +100,7 @@ namespace WebApplicationPLS.Controllers
         public ActionResult KategoriBlog(int id, int Sayfa=1)
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
+            ViewBag.BlogKategori = db.Kategori.Where(x => x.KategoriID == id).Select(x => x.KategoriAd).FirstOrDefault();
 
             var b = db.Blog.Include("Kategori").OrderByDescending(x=>x.KategoriID).Where(x=>x.Kategori.KategoriID==id).ToPagedList(Sayfa, 6);
             return View(b);
@@ -101,10 +109,21 @@ namespace WebApplicationPLS.Controllers
         public ActionResult BlogDetay(int id)
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
+            ViewBag.EnSonBloglar = db.Blog.OrderByDescending(t => t.BlogID).Take(5);
+
             ViewBag.BlogYorumSayisi = db.Blog.Include("Yorums").Where(x => x.BlogID == id).SingleOrDefault().Yorums.Count();
 
 
             var b = db.Blog.Include("Kategori").Include("Yorums").Where(x=>x.BlogID == id).SingleOrDefault();
+            if (b == null)
+            {
+                return HttpNotFound(); // Tarif bulunamazsa 404 sayfası döndürülür
+            }
+
+            // Tıklanma sayısını artır
+            b.TiklanmaSayisi += 1;
+            db.SaveChanges();
+
             return View(b);
         }
         [Route("Tarif")]
@@ -120,6 +139,7 @@ namespace WebApplicationPLS.Controllers
         public ActionResult ListeTarif(int id, int Sayfa = 1)
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
+            ViewBag.TarifKategori = db.Liste.Where(x => x.ListeID == id).Select(x => x.ListeAd).FirstOrDefault();
 
             var b = db.Tarif.Include("Liste").OrderByDescending(x => x.ListeID).Where(x => x.Liste.ListeID == id).ToPagedList(Sayfa, 6);
             return View(b);
@@ -129,8 +149,18 @@ namespace WebApplicationPLS.Controllers
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
             ViewBag.TarifYorumSayisi = db.Tarif.Include("TarifYorums").Where(x => x.TarifID == id).SingleOrDefault().TarifYorums.Count();
+            ViewBag.EnSonTarifler = db.Tarif.OrderByDescending(t => t.TarifID).Take(5);
 
             var b = db.Tarif.Include("Liste").Include("TarifYorums").Where(x => x.TarifID == id).SingleOrDefault();
+            if (b == null)
+            {
+                return HttpNotFound(); // Tarif bulunamazsa 404 sayfası döndürülür
+            }
+
+            // Tıklanma sayısını artır
+            b.TiklanmaSayisi += 1;
+            db.SaveChanges();
+
             return View(b);
         }
         public JsonResult YorumYap(string adsoyad, string eposta, string icerik, int blogid)
@@ -150,6 +180,7 @@ namespace WebApplicationPLS.Controllers
         public ActionResult BlogKategoriPartial()
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
+            ViewBag.BlogSayisi = db.Blog.Where(x => x.Icerik != null).Count();
 
             return PartialView(db.Kategori.Include("Blogs").ToList().OrderBy(x=>x.KategoriAd));
         }
@@ -162,6 +193,7 @@ namespace WebApplicationPLS.Controllers
         public ActionResult TarifListePartial()
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
+            ViewBag.TarifSayisi = db.Tarif.Where(Tarif => Tarif.Icerik != null).Count();
 
             return PartialView(db.Liste.Include("Tarifs").ToList().OrderBy(x => x.ListeAd));
         }

@@ -10,17 +10,19 @@
 <p>
     @Html.ActionLink("Yeni oluştur", "Create")
 </p>
-<table class="table table-bordered">
-    <tr class="table table-primary">
-        <th>
-            @Html.DisplayNameFor(model => model.KategoriAd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Aciklama)
-        </th>
-        <th></th>
-    </tr>
-
+<table class="table datatable">
+    <thead>
+        <tr class="table table-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.KategoriAd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aciklama)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -36,5 +38,6 @@
         </td>
     </tr>
 }
+        </tbody>
 
 </table>

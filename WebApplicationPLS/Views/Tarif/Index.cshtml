@@ -4,27 +4,12 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-<link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
-<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
-<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
 
-
-<script>
-    $(document).ready(function () {
-        $('#myTable').DataTable(
-            {
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/2.1.8/i18n/tr.json"
-                }
-            });
-    });
-</script>
 
 <h2>Tarif Kayıtları</h2>
 
 
-<table class="table table-bordered" id="myTable">
+<table class="table datatable">
     <thead>
         <tr class="table table-primary">
             <th>#</th>
@@ -32,6 +17,8 @@
             <th>Liste</th>
             <th>ResimURL</th>
             <th>İşlemler</th>
+            <th>Yüklenme Tarihi</th>
+            <th>Tıklanma Sayısı</th>
         </tr>
     </thead>
     <tbody>
@@ -43,6 +30,10 @@
                 <td>@item.Liste.ListeAd</td>
                 <td><img src="@item.ResimURL" width="50" height="50" /></td>
                 <td><a href="/yonetimpaneli/tarif/duzenle/@item.TarifID" class="btn btn-primary">Güncelle</a>  <a href="/yonetimpaneli/tarif/sil/@item.TarifID" class="btn btn-danger">Sil</a></td>
+                <td>@item.YuklenmeTarihi</td>
+                <td>@item.TiklanmaSayisi</td>
+
+
             </tr>
         }
     </tbody>

@@ -4,29 +4,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-<link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
-<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
-<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
 
-
-<script>
-    $(document).ready(function () {
-        $('#myTable').DataTable(
-            {
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/2.1.8/i18n/tr.json"
-                }
-            });
-    });
-</script>
 
 <h2>Listeler</h2>
 
 <p>
     @Html.ActionLink("Yeni oluştur", "Create")
 </p>
-<table class="table table-bordered" id="myTable">
+<table class="table datatable">
     <thead>
         <tr class="table table-primary">
             <th>
@@ -63,7 +48,4 @@
             </tr>
         }
     </tbody>
-
-    
-
 </table>

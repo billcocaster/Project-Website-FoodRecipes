@@ -1,0 +1,51 @@
+﻿@model WebApplicationPLS.Models.Model.Admin
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Kullanıcı Detayları</h2>
+
+<div>
+    <h4>Admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Eposta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eposta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sifre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HesapTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HesapTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yetki)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yetki)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Güncelle", "Edit", new { id = Model.AdminID }) |
+    @Html.ActionLink("Listeye dön", "Index")
+</p>

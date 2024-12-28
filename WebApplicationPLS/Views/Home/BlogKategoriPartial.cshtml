@@ -1,20 +1,21 @@
 ﻿@model IEnumerable<WebApplicationPLS.Models.Model.Kategori>
 @using WebApplicationPLS.Helper;
 <!-- Categories Widget -->
-<div class="categories-widget widget-item">
 
+
+<div class="card-body">
     <h3 class="widget-title">Kategoriler</h3>
-    <ul class="mt-3">
-        <li>
-            <a href="/Blog/">Tümü</a>
-        </li>
-        @foreach (var item in Model)
-        {
-            <li>
-                <a href="/Blog/@SeoHelper.ToSeoUrl(item.KategoriAd).ToLower()/@item.KategoriID">@item.KategoriAd<span>(@item.Blogs.Count())</span></a>
-            </li>
-        }
-       
-    </ul>
+    <a class="btn btn-success mb-2" href="/Blog/">
+        Tümü <span class="badge bg-success-subtle text-success">@ViewBag.BlogSayisi</span>
+    </a>
 
-</div><!--/Categories Widget -->
+    @foreach (var item in Model)
+    {
+        if (item.Blogs.Count > 0)
+        {
+            <a class="btn btn-success mb-2" href="/Blog/@SeoHelper.ToSeoUrl(item.KategoriAd).ToLower()/@item.KategoriID">
+                @item.KategoriAd <span class="badge bg-success-subtle text-success">@item.Blogs.Count()</span>
+            </a>
+        }
+    }
+</div>

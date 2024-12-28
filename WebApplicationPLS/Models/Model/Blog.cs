@@ -17,6 +17,7 @@ namespace WebApplicationPLS.Models.Model
         public string Icerik { get; set; }
         [DisplayName("Blog görseli")]
         public string ResimURL { get; set; }
+        public int TiklanmaSayisi { get; set; }
         public int? KategoriID { get; set; }
         public Kategori Kategori { get; set; }
         public ICollection<Yorum> Yorums { get; set; }

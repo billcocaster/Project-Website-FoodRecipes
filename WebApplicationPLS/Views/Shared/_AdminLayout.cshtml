@@ -4,6 +4,7 @@
         Response.Redirect("/yonetimpaneli/giris/");
     }
     var yorumBekleyen = ViewBag.YorumBekleyen as List<WebApplicationPLS.Models.Model.Yorum>;
+    var tarifYorumBekleyen = ViewBag.TarifYorumBekleyen as List<WebApplicationPLS.Models.Model.TarifYorum>;
 }
 
 <!DOCTYPE html>
@@ -84,12 +85,12 @@
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number">@ViewBag.YorumOnay</span>
+                        <span class="badge bg-primary badge-number">@ViewBag.ToplamYorum</span>
                     </a><!-- End Notification Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                         <li class="dropdown-header">
-                            Onay Bekleyen @ViewBag.YorumOnay Yorum Bulunuyor
+                            Onay Bekleyen @ViewBag.ToplamYorum Yorum Bulunuyor
                             <a href="/Yorum/Index/"><span class="badge rounded-pill bg-primary p-2 ms-2">Yoruma git</span></a>
                         </li>
                         <li>
@@ -97,6 +98,9 @@
                         </li>
                         @if (yorumBekleyen != null && yorumBekleyen.Any())
                         {
+                            <li class="notification-item">
+                                <p>Onay bekleyen blog yorumları</p>
+                            </li>
                             foreach (var item in yorumBekleyen)
                             {
                                 <li class="notification-item">
@@ -114,10 +118,45 @@
                             <li class="notification-item">
                                 <i class="bi bi-info-circle text-info"></i>
                                 <div>
-                                    <p>Onay bekleyen yorum bulunmamaktadır.</p>
+                                    <p>Onay bekleyen blog yorumu bulunmamaktadır.</p>
                                 </div>
                             </li>
                         }
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        @if (tarifYorumBekleyen != null && tarifYorumBekleyen.Any())
+                        {
+                            <li class="notification-item">
+                                <p>Onay bekleyen tarif yorumları</p>
+                            </li>
+                            foreach (var item in tarifYorumBekleyen)
+                            {
+                                <li class="notification-item">
+                                    <i class="bi bi-exclamation-circle text-warning"></i>
+                                    <div>
+                                        <h4>@item.AdSoyad</h4>
+                                        <p>@item.Icerik</p>
+                                        <p>@item.Tarif</p>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="notification-item">
+                                <i class="bi bi-info-circle text-info"></i>
+                                <div>
+                                    <p>Onay bekleyen tarif yorumu bulunmamaktadır.</p>
+                                </div>
+                            </li>
+                        }
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
 
                         <li>
                             <hr class="dropdown-divider">
@@ -166,13 +205,17 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                        @{if (Session["yetki"].ToString() == "Admin")
+                            {
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="/Admin/Adminler/">
+                                        <i class="bi bi-question-circle"></i>
+                                        <span>Adminler</span>
+                                    </a>
+                                </li>
+                            }
+                        }
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
-                            </a>
-                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -195,6 +238,7 @@
     <aside id="sidebar" class="sidebar">
 
         <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-heading">Admin Sayfaları</li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/yonetimpaneli/">
@@ -280,56 +324,50 @@
 
 
 
-            <li class="nav-heading">Pages</li>
+            <li class="nav-heading">Kullanıcı Sayfaları</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person"></i>
-                    <span>Profile</span>
+                <a class="nav-link collapsed" href="/Anasayfa/">
+                    <i class="bi bi-house"></i>
+                    <span>Site Ana Sayfa</span>
                 </a>
-            </li><!-- End Profile Page Nav -->
+            </li><!-- End Ana Sayfa Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-faq.html">
-                    <i class="bi bi-question-circle"></i>
-                    <span>F.A.Q</span>
+                <a class="nav-link collapsed" href="/Tarif/">
+                    <i class="bi bi-egg"></i>
+                    <span>Tarif Sayfası</span>
                 </a>
-            </li><!-- End F.A.Q Page Nav -->
+            </li><!-- End Tarif Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-contact.html">
-                    <i class="bi bi-envelope"></i>
-                    <span>Contact</span>
-                </a>
-            </li><!-- End Contact Page Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-register.html">
+                <a class="nav-link collapsed" href="/Liste/">
                     <i class="bi bi-card-list"></i>
-                    <span>Register</span>
+                    <span>Liste Sayfası</span>
                 </a>
-            </li><!-- End Register Page Nav -->
+            </li><!-- End Liste Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-login.html">
-                    <i class="bi bi-box-arrow-in-right"></i>
-                    <span>Login</span>
+                <a class="nav-link collapsed" href="/Blog/">
+                    <i class="bi bi-card-list"></i>
+                    <span>Blog Sayfası</span>
                 </a>
-            </li><!-- End Login Page Nav -->
+            </li><!-- End Blog Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-error-404.html">
-                    <i class="bi bi-dash-circle"></i>
-                    <span>Error 404</span>
+                <a class="nav-link collapsed" href="/Hakkimizda/">
+                    <i class="bi bi-info-circle"></i>
+                    <span>Hakkımızda Sayfası</span>
                 </a>
-            </li><!-- End Error 404 Page Nav -->
+            </li><!-- End Hakkimizda Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-blank.html">
-                    <i class="bi bi-file-earmark"></i>
-                    <span>Blank</span>
+                <a class="nav-link collapsed" href="/Iletisim/">
+                    <i class="bi bi-mailbox"></i>
+                    <span>İletişim Sayfası</span>
                 </a>
-            </li><!-- End Blank Page Nav -->
+            </li><!-- End Iletisim Page Nav -->
+
 
         </ul>
 

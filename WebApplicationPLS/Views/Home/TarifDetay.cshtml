@@ -1,4 +1,5 @@
-﻿@model WebApplicationPLS.Models.Model.Tarif
+﻿@using WebApplicationPLS.Helper;
+@model WebApplicationPLS.Models.Model.Tarif
 @{
     ViewBag.Title = "TarifDetay";
     Layout = "~/Views/Shared/_SiteLayout.cshtml";
@@ -52,7 +53,7 @@
                         <div class="meta-bottom">
                             <i class="bi bi-folder"></i>
                             <ul class="cats">
-                                <li><a href="#">@Model.Liste.ListeAd</a></li>
+                                <li><a href="/Tarif/@SeoHelper.ToSeoUrl(Model.Liste.ListeAd).ToLower()/@Model.ListeID">@Model.Liste.ListeAd</a></li>
                             </ul>
                         </div><!-- End meta bottom -->
 
@@ -73,7 +74,7 @@
                                 <div class="comment-img"><img src="~/Content/imgs/logom2.png" alt=""></div>
                                 <div>
                                     <h5><a href="">@item.AdSoyad</a></h5>
-                                    <time datetime="@Model.YuklenmeTarihi.ToString("yyyy-MM-dd")">@Model.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>
+                                    <time datetime="@item.YorumTarihi.ToString("yyyy-MM-dd")">@item.YorumTarihi.ToString("dd MMM, yyyy")</time>
                                     <p>
                                         @item.Icerik
                                     </p>
@@ -124,8 +125,8 @@
                 <div class="blog-author-widget widget-item">
 
                     <div class="d-flex flex-column align-items-center">
-                        <img src="/Content/SiteLayout/assets/img/blog/blog-author.jpg" class="rounded-circle flex-shrink-0" alt="">
-                        <h4>Jane Smith</h4>
+                        <img src="~/Content/imgs/logso.png" class="rounded-circle flex-shrink-0" alt="">
+                        <h4>YemekTarifleri</h4>
                         <div class="social-links">
                             <a href="https://x.com/#"><i class="bi bi-twitter-x"></i></a>
                             <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
@@ -134,7 +135,7 @@
                         </div>
 
                         <p>
-                            Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+                            En güncel yemek tariflerinden haberdar olabilmek için bizi sosyal mecralardan takip edebilirsiniz...
                         </p>
 
                     </div>
@@ -142,47 +143,18 @@
                 <!-- Recent Posts Widget -->
                 <div class="recent-posts-widget widget-item">
 
-                    <h3 class="widget-title">Recent Posts</h3>
+                    <h3 class="widget-title">Son Tarifler</h3>
+                    @foreach (var tarif in ViewBag.EnSonTarifler)
+                    {
+                        <div class="post-item">
+                            <img src="@tarif.ResimURL" alt="@tarif.Baslik" class="flex-shrink-0">
+                            <div>
+                                <h4><a href="/Tarif/@SeoHelper.ToSeoUrl(tarif.Baslik).ToLower()-@tarif.TarifID">@tarif.Baslik</a></h4>
+                                <time datetime="@tarif.YuklenmeTarihi.ToString("yyyy-MM-dd")">@tarif.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>
+                            </div>
+                        </div><!-- End recent post item-->
+                    }
 
-                    <div class="post-item">
-                        <img src="/Content/SiteLayout/assets/img/blog/blog-recent-1.jpg" alt="" class="flex-shrink-0">
-                        <div>
-                            <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-                    </div><!-- End recent post item-->
-
-                    <div class="post-item">
-                        <img src="/Content/SiteLayout/assets/img/blog/blog-recent-2.jpg" alt="" class="flex-shrink-0">
-                        <div>
-                            <h4><a href="blog-details.html">Quidem autem et impedit</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-                    </div><!-- End recent post item-->
-
-                    <div class="post-item">
-                        <img src="/Content/SiteLayout/assets/img/blog/blog-recent-3.jpg" alt="" class="flex-shrink-0">
-                        <div>
-                            <h4><a href="blog-details.html">Id quia et et ut maxime similique occaecati ut</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-                    </div><!-- End recent post item-->
-
-                    <div class="post-item">
-                        <img src="/Content/SiteLayout/assets/img/blog/blog-recent-4.jpg" alt="" class="flex-shrink-0">
-                        <div>
-                            <h4><a href="blog-details.html">Laborum corporis quo dara net para</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-                    </div><!-- End recent post item-->
-
-                    <div class="post-item">
-                        <img src="/Content/SiteLayout/assets/img/blog/blog-recent-5.jpg" alt="" class="flex-shrink-0">
-                        <div>
-                            <h4><a href="blog-details.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-                    </div><!-- End recent post item-->
 
                 </div><!--/Recent Posts Widget -->
             </div>

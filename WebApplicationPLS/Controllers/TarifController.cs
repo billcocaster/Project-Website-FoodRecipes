@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -35,13 +36,13 @@ namespace WebApplicationPLS.Controllers
         {
             if (ResimURL != null)
             {
+                var img = System.Drawing.Image.FromStream(ResimURL.InputStream);
+                var resizedImg = new Bitmap(img, new Size(1024, 768));
 
-                WebImage img = new WebImage(ResimURL.InputStream);
-                FileInfo imginfo = new FileInfo(ResimURL.FileName);
+                string tarifimgname = Guid.NewGuid().ToString() + Path.GetExtension(ResimURL.FileName);
+                string path = Server.MapPath("~/Uploads/Tarif/" + tarifimgname);
 
-                string tarifimgname = Guid.NewGuid().ToString() + imginfo.Extension;
-                img.Resize(1024, 768);
-                img.Save("~/Uploads/Tarif/" + tarifimgname);
+                resizedImg.Save(path, img.RawFormat);
 
                 tarif.ResimURL = "/Uploads/Tarif/" + tarifimgname;
             }
@@ -72,30 +73,57 @@ namespace WebApplicationPLS.Controllers
 
         public ActionResult Edit(int id, Tarif tarif, HttpPostedFileBase ResimURL)
         {
+
             if (ModelState.IsValid)
             {
                 var b = db.Tarif.Where(x => x.TarifID == id).SingleOrDefault();
                 if (ResimURL != null)
                 {
-                    if (System.IO.File.Exists(Server.MapPath(b.ResimURL)))
+                    // Mevcut resmi sil
+                    if (!string.IsNullOrEmpty(b.ResimURL) && System.IO.File.Exists(Server.MapPath(b.ResimURL)))
                     {
                         System.IO.File.Delete(Server.MapPath(b.ResimURL));
                     }
-                    WebImage img = new WebImage(ResimURL.InputStream);
-                    FileInfo imginfo = new FileInfo(ResimURL.FileName);
 
-                    string tarifimgname = Guid.NewGuid().ToString() + imginfo.Extension;
-                    img.Resize(1024, 768);
-                    img.Save("~/Uploads/Tarif/" + tarifimgname);
+                    // Yeni resmi işle ve kaydet
+                    using (var img = System.Drawing.Image.FromStream(ResimURL.InputStream))
+                    {
+                        // Resmi yeniden boyutlandır
+                        var resizedImg = new System.Drawing.Bitmap(img, new System.Drawing.Size(1024, 768));
 
-                    b.ResimURL = "/Uploads/Tarif/" + tarifimgname;
+                        // Resim dosya adını oluştur
+                        string tarifimgname = Guid.NewGuid().ToString() + Path.GetExtension(ResimURL.FileName);
+                        string path = Server.MapPath("~/Uploads/Tarif/" + tarifimgname);
+
+                        // Resmi kaydet
+                        resizedImg.Save(path, img.RawFormat);
+
+                        // Resim URL'sini ayarla
+                        b.ResimURL = "/Uploads/Tarif/" + tarifimgname;
+                    }
                 }
+
                 b.Baslik = tarif.Baslik;
                 b.Icerik = tarif.Icerik;
                 b.ListeID = tarif.ListeID;
+
                 db.SaveChanges();
-                return Redirect("/Tarif/Index/");
+                return Redirect("/Liste/Index/");
             }
+            return View(tarif);
+        }
+        public ActionResult Detay(int id)
+        {
+            var tarif = db.Tarif.Find(id);
+            if (tarif == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Tıklanma sayısını artır
+            tarif.TiklanmaSayisi++;
+            db.SaveChanges();
+
             return View(tarif);
         }
         [Route("yonetimpaneli/tarif/sil/{id:int}")]

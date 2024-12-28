@@ -12,11 +12,12 @@
 <div class="page-title dark-background">
     <div class="container position-relative">
         <h1>Blog</h1>
-        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+        <p>@ViewBag.BlogKategori</p>
         <nav class="breadcrumbs">
             <ol>
                 <li><a href="/Anasayfa/">Ana Sayfa</a></li>
-                <li class="current">Kategori Blog</li>
+                <li><a href="/Blog/">Blog</a></li>
+                <li class="current">@ViewBag.BlogKategori</li>
             </ol>
         </nav>
     </div>
@@ -47,7 +48,7 @@
         <div class="row gy-4">
 
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.OrderByDescending(x=>x.BlogID))
             {
                 <div class="col-lg-4">
                     <article>
@@ -62,11 +63,11 @@
                         </h2>
 
                         <div class="d-flex align-items-center">
-                            <img src="/Content/SiteLayout/assets/img/blog/blog-author.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
+                            <img src="~/Content/imgs/logso.png" alt="" class="img-fluid post-author-img flex-shrink-0">
                             <div class="post-meta">
-                                <p class="post-author">Maria Doe</p>
+                                <p class="post-author">YemekTarifleri</p>
                                 <p class="post-date">
-                                    <time datetime="2022-01-01">Jan 1, 2022</time>
+                                    <time datetime="@item.YuklenmeTarihi.ToString("yyyy-MM-dd")">@item.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>
                                 </p>
                             </div>
                         </div>

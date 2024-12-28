@@ -26,6 +26,13 @@
         <dd>
             @Html.DisplayFor(model => model.Icerik)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TiklanmaSayisi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TiklanmaSayisi)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.ResimURL)
@@ -47,5 +54,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.TarifID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "/Index/")
 </p>

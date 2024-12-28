@@ -5,24 +5,12 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-<link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
-
 
 
 <h2>Yorumlar</h2>
-<script>
-    $(document).ready(function () {
-        $('#myTable1').DataTable(
-            {
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/2.1.8/i18n/tr.json"
-                }
-            });
-    });
-</script>
 
-<table class="table" id="myTable1">
+
+<table class="table datatable">
     <thead>
         <tr>
             <th>

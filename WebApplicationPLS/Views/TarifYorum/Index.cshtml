@@ -5,60 +5,63 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Tariflere gelen yorumlar</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Tarif.Baslik)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdSoyad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Eposta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Icerik)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Onay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YorumTarihi)
-        </th>
-        <th></th>
-    </tr>
+<table class="table datatable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarif.Baslik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdSoyad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Eposta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icerik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Onay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YorumTarihi)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tarif.Baslik)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdSoyad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Eposta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Icerik)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Onay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YorumTarihi)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TarifYorumID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TarifYorumID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TarifYorumID })
-        </td>
-    </tr>
-}
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tarif.Baslik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdSoyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Eposta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Icerik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Onay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.YorumTarihi)
+                </td>
+                <td>
+                    @Html.ActionLink("Güncelle", "Edit", new { id = item.TarifYorumID }) |
+                    @Html.ActionLink("Detaylar", "Details", new { id = item.TarifYorumID }) |
+                    @Html.ActionLink("Sil", "Delete", new { id = item.TarifYorumID })
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>

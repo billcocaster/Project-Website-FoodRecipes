@@ -12,11 +12,12 @@
 <div class="page-title dark-background">
     <div class="container position-relative">
         <h1>Tarifler</h1>
-        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+        <p>@ViewBag.TarifKategori</p>
         <nav class="breadcrumbs">
             <ol>
                 <li><a href="/Anasayfa/">Ana Sayfa</a></li>
-                <li class="current">Liste Tarif</li>
+                <li><a href="/Tarif/">Tarif</a></li>
+                <li class="current">@ViewBag.TarifKategori</li>
             </ol>
         </nav>
     </div>
@@ -61,11 +62,11 @@
                         </h2>
 
                         <div class="d-flex align-items-center">
-                            <img src="/Content/SiteLayout/assets/img/blog/blog-author.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
+                            <img src="~/Content/imgs/logso.png" alt="" class="img-fluid post-author-img flex-shrink-0">
                             <div class="post-meta">
-                                <p class="post-author">Maria Doe</p>
+                                <p class="post-author">YemekTarifleri</p>
                                 <p class="post-date">
-                                    <time datetime="2022-01-01">Jan 1, 2022</time>
+                                    <time datetime="@item.YuklenmeTarihi.ToString("yyyy-MM-dd")">@item.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>
                                 </p>
                             </div>
                         </div>
