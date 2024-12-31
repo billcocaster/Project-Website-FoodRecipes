@@ -30,16 +30,16 @@
                     <article class="article">
 
                         <div class="post-img">
-                            <img src="@Model.ResimURL" alt="@Model.Baslik" class="object-fit-cover">
+                            <img src="@Model.ResimURL" alt="@Model.Baslik" class="img-fluid">
                         </div>
 
                         <h2 class="title">@Model.Baslik</h2>
 
                         <div class="meta-top">
                             <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="@Model.YuklenmeTarihi.ToString("yyyy-MM-dd")">@Model.YuklenmeTarihi.ToString("dd MMM, yyyy")</time></a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">@ViewBag.TarifYorumSayisi Yorum</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="/Anasayfa/">YemekTarifleri</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a><time datetime="@Model.YuklenmeTarihi.ToString("yyyy-MM-dd")">@Model.YuklenmeTarihi.ToString("dd MMM, yyyy")</time></a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a>@ViewBag.TarifYorumSayisi Yorum</a></li>
                             </ul>
                         </div><!-- End meta top -->
 
@@ -147,7 +147,7 @@
                     @foreach (var tarif in ViewBag.EnSonTarifler)
                     {
                         <div class="post-item">
-                            <img src="@tarif.ResimURL" alt="@tarif.Baslik" class="flex-shrink-0">
+                            <a href="/Tarif/@SeoHelper.ToSeoUrl(tarif.Baslik).ToLower()-@tarif.TarifID"><img src="@tarif.ResimURL" alt="@tarif.Baslik" class="flex-shrink-0"></a>
                             <div>
                                 <h4><a href="/Tarif/@SeoHelper.ToSeoUrl(tarif.Baslik).ToLower()-@tarif.TarifID">@tarif.Baslik</a></h4>
                                 <time datetime="@tarif.YuklenmeTarihi.ToString("yyyy-MM-dd")">@tarif.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>

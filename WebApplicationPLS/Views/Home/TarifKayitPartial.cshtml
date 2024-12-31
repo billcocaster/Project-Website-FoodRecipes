@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<WebApplicationPLS.Models.Model.Tarif>
 @using WebApplicationPLS.Helper;
-@foreach (var item in Model)
+@foreach (var item in ViewBag.EnSonTariflerTK)
 {
     <div class="post-item">
-        <img src="@item.ResimURL" alt="@item.Baslik" class="flex-shrink-0">
+        <a href="/Tarif/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.TarifID"><img src="@item.ResimURL" alt="@item.Baslik" class="flex-shrink-0"></a>
         <div>
             <h4><a href="/Tarif/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.TarifID">@item.Baslik</a></h4>
             <time datetime="@item.YuklenmeTarihi.ToString("yyyy-MM-dd")">@item.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>

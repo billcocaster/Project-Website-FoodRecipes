@@ -38,16 +38,6 @@
                 Html.RenderAction("BlogKayitPartial", "Home");
             }*@
         <!--</div>--><!--/Recent Posts Widget -->
-        <!-- Search Widget -->
-        <div class="search-widget widget-item">
-
-            <h3 class="widget-title">Search</h3>
-            <form action="">
-                <input type="text">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-
-        </div><!--/Search Widget -->
 
 
         <div class="row gy-4">
@@ -58,7 +48,7 @@
                 <div class="col-lg-4">
                     <article>
                         <div class="post-img">
-                            <img src="@item.ResimURL" alt="@item.Baslik" class="img-fluid" href="/BlogPost/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogID">
+                            <a href="/Blog/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogID"><img src="@item.ResimURL" alt="@item.Baslik" class="img-fluid"></a>
                         </div>
 
                         <p class="post-category">@item.Kategori.KategoriAd</p>

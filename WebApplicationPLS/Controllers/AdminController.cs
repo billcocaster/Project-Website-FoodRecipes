@@ -25,9 +25,21 @@ namespace WebApplicationPLS.Controllers
 
             ViewBag.YorumBekleyen = db.Yorum.Where(x => x.Onay == false).ToList();
             ViewBag.YorumOnay = db.Yorum.Where(x => x.Onay == false).Count();
+
             ViewBag.TarifYorumBekleyen = db.TarifYorum.Where(x => x.Onay == false).ToList();
             ViewBag.TarifYorumOnay = db.TarifYorum.Where(x => x.Onay == false).Count();
+
             ViewBag.ToplamYorum = ViewBag.TarifYorumOnay + ViewBag.YorumOnay;
+
+            ViewBag.EnSonTariflerAdmin = db.Tarif.OrderByDescending(t => t.TarifID).Take(3);
+            ViewBag.EnSonBloglarAdmin = db.Blog.OrderByDescending(b => b.BlogID).Take(3);
+
+            ViewBag.TiklananTariflerAdmin = db.Tarif.OrderByDescending(t => t.TiklanmaSayisi).Take(5);
+            ViewBag.TiklananBloglarAdmin = db.Blog.OrderByDescending(t => t.TiklanmaSayisi).Take(3);
+
+
+
+
             var sorgu = db.Kategori.ToList();
             return View(sorgu);
         }

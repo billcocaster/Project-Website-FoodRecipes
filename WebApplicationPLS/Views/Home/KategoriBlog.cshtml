@@ -32,16 +32,6 @@
             Html.RenderAction("BlogKategoriPartial", "Home");
         }
 
-        <!-- Search Widget -->
-        <div class="search-widget widget-item">
-
-            <h3 class="widget-title">Search</h3>
-            <form action="">
-                <input type="text">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-
-        </div><!--/Search Widget -->
 
 
 
@@ -53,7 +43,7 @@
                 <div class="col-lg-4">
                     <article>
                         <div class="post-img" href="/Home/BlogDetay/@item.BlogID">
-                            <img src="@item.ResimURL" alt="@item.Baslik" class="object-fit">
+                            <a href="/Blog/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogID"><img src="@item.ResimURL" alt="@item.Baslik" class="img-fluid"></a>
                         </div>
 
                         <p class="post-category">@item.Kategori.KategoriAd</p>
@@ -68,6 +58,7 @@
                                 <p class="post-author">YemekTarifleri</p>
                                 <p class="post-date">
                                     <time datetime="@item.YuklenmeTarihi.ToString("yyyy-MM-dd")">@item.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>
+                                    <i class="bi bi-eye-fill">@item.TiklanmaSayisi</i>
                                 </p>
                             </div>
                         </div>

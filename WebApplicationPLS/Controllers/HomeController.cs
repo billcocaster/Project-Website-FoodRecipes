@@ -200,6 +200,7 @@ namespace WebApplicationPLS.Controllers
         public ActionResult TarifKayitPartial()
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
+            ViewBag.EnSonTariflerTK = db.Tarif.OrderByDescending(t => t.TarifID).Take(3);
 
             return PartialView(db.Tarif.ToList().OrderByDescending(x => x.TarifID));
         }
@@ -216,6 +217,8 @@ namespace WebApplicationPLS.Controllers
             ViewBag.Iletisim = db.Iletisim.SingleOrDefault();
             return PartialView(db.Hakkimizda.SingleOrDefault());
         }
+
+
        
         
 

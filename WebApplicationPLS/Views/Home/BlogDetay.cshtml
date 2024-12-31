@@ -30,7 +30,7 @@
                     <article class="article">
 
                         <div class="post-img">
-                            <img src="@Model.ResimURL" alt="@Model.Baslik" class="object-fit-cover">
+                            <img src="@Model.ResimURL" alt="@Model.Baslik" class="img-fluid">
                         </div>
 
                         <h2 class="title">@Model.Baslik</h2>
@@ -152,7 +152,7 @@
                     @foreach (var blog in ViewBag.EnSonBloglar)
                     {
                         <div class="post-item">
-                            <img src="@blog.ResimURL" alt="@blog.Baslik" class="flex-shrink-0">
+                            <a href="/Blog/@SeoHelper.ToSeoUrl(blog.Baslik).ToLower()-@blog.BlogID"><img src="@blog.ResimURL" alt="@blog.Baslik" class="flex-shrink-0"></a>
                             <div>
                                 <h4><a href="/Blog/@SeoHelper.ToSeoUrl(blog.Baslik).ToLower()-@blog.BlogID">@blog.Baslik</a></h4>
                                 <time datetime="@blog.YuklenmeTarihi.ToString("yyyy-MM-dd")">@blog.YuklenmeTarihi.ToString("dd MMM, yyyy")</time>
