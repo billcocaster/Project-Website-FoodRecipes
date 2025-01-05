@@ -9,6 +9,11 @@ YemekTarifleri is a website designed to share and discover a wide variety of del
 - **Recipe Collection**: Browse a wide range of recipes across different cuisines and categories.
 - **Blogs**: Explore blogs from various categories.
 
+## 📷Screenshots
+<img width="1268" alt="Screenshot_117" src="https://github.com/user-attachments/assets/712c757c-f93d-4c1a-9ea1-d91b8164febb" />
+<img width="1267" alt="Screenshot_118" src="https://github.com/user-attachments/assets/4d330c69-e26a-4ad9-8f8e-cc3167175d0f" />
+<img width="1269" alt="Screenshot_119" src="https://github.com/user-attachments/assets/dce3acf8-7b55-4aa7-9d12-ba243dded0c2" />
+
 
 ## 💻Technologies Used
 
